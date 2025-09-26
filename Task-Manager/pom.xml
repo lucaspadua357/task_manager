@@ -8,6 +8,14 @@
     <artifactId>Task-Manager</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <developers>
+        <developer>
+            <name>Lucas da Silva Padua</name>
+            <id>GEC 2234</id>
+            <email>lucas.padua@gec.inatel.br</email>
+        </developer>
+    </developers>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
