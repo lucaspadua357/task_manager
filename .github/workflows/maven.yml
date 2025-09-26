@@ -27,7 +27,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Run tests
-        run: mvn -B test site
+        run: |
+          cd Task-Manager
+          mvn -B test site
       - name: Upload test reports (Surefire + Site)
         if: always()
         uses: actions/upload-artifact@v4
@@ -49,28 +51,25 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven (skip tests)
-        run: mvn -B -DskipTests package
+        run: |
+          cd Task-Manager
+          mvn -B -DskipTests package
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: task-manager-jar
           path: target/*.jar
 
-  notify:
+  notification:
+
+    needs: test
+
     runs-on: ubuntu-latest
-    needs: [tests, build]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Send email notification
-        env:
-          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          STATUS_TESTS: ${{ needs.tests.result }}
-          STATUS_BUILD: ${{ needs.build.result }}
-          GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: python3 scripts/send_mail.py
+    - uses: actions/checkout@v4
+    
+    - name: Send notification
+      run: sh scripts/sendEmail.sh
 
 
