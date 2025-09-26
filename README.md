@@ -11,6 +11,6 @@ Este projeto implementa um gerenciador de tarefas simples em **Java 21** com **M
 - Criação, edição e remoção de tarefas  
 - Marcação de tarefas como concluídas  
 - Listagem de pendentes e concluídas  
-- Testes unitários (20+ cenários) com JUnit 5 e Mockito  
+- Testes unitários (20+ cenários) com JUnit e Mockito  
 
 ---
