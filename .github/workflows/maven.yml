@@ -36,12 +36,12 @@ jobs:
         with:
           name: test-reports
           path: |
+            cd Task-Manager
             target/surefire-reports/**
             target/site/**
 
   build:
     runs-on: ubuntu-latest
-    # roda em paralelo com "tests"
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -58,18 +58,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: task-manager-jar
-          path: target/*.jar
+          path: Task-Manager/target/*.jar
 
   notification:
-
-    needs: test
-
+    needs: [tests, build]   
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Send notification
-      run: sh scripts/sendEmail.sh
+      - uses: actions/checkout@v4
+      - name: Send notification
+        run: sh scripts/sendEmail.sh   
+h
 
 
