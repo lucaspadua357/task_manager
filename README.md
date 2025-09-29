@@ -2,7 +2,7 @@
 
 
 Projeto desenvolvido por **Lucas da Silva Padua**  
-Disciplina: Engenharia de Software(C14) - Inatel 
+Disciplina: Engenharia de Software(C14) - Inatel<br>
 Professor: Gabriel Pivoto
 
 

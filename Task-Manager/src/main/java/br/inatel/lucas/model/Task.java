@@ -10,7 +10,7 @@ public class Task {
 
     public Task(String title, String description) {
         this.id = UUID.randomUUID().toString();
-        setTitle(title);         // já usa o setter com validação
+        setTitle(title);
         this.description = description;
         this.done = false;
     }
